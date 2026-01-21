@@ -93,13 +93,17 @@ As a user, I want my conversation threads to persist across browser sessions so 
 - **FR-008**: System MUST maintain message order (chronological) within each thread
 - **FR-009**: System MUST auto-scroll to new messages unless user is viewing history
 - **FR-010**: System MUST persist threads and messages to local storage for session continuity
-- **FR-011**: System MUST handle errors gracefully with user-friendly messages
-- **FR-012**: System MUST be keyboard accessible (Enter to send, Tab navigation)
-- **FR-013**: System MUST display timestamps for messages
+- **FR-011**: System MUST limit storage to 50 threads maximum, auto-deleting oldest threads when limit is reached
+- **FR-012**: System MUST handle errors gracefully with user-friendly messages
+- **FR-013**: System MUST be keyboard accessible (Enter to send, Tab navigation)
+- **FR-014**: System MUST display timestamps for messages
+- **FR-015**: System MUST render AI responses as markdown with full support (code blocks with syntax highlighting, lists, bold, italic, links)
+- **FR-016**: System MUST send only the last 10 messages as context to Ollama (not full thread history)
+- **FR-017**: System MUST detect when Ollama is unavailable and display a specific "Ollama not running" message with setup instructions
 
 ### Key Entities
 
-- **Thread**: A container for a conversation; has a unique identifier, title (auto-generated or user-defined), creation timestamp, last activity timestamp, and contains an ordered list of messages
+- **Thread**: A container for a conversation; has a unique identifier, title (auto-generated from first user message, truncated to 30 characters, user can rename), creation timestamp, last activity timestamp, and contains an ordered list of messages
 - **Message**: A single chat message; has a unique identifier, content (text), role (user or assistant), timestamp, and belongs to exactly one thread
 - **Graph State**: The LangGraph execution state; tracks the current conversation context, accumulated messages, and any intermediate processing state needed for multi-turn conversations
 
@@ -120,7 +124,23 @@ As a user, I want my conversation threads to persist across browser sessions so 
 
 - LangGraph will be used for the AI/agent orchestration backend
 - assistant-ui library will provide the chat UI primitives
-- AI model/service integration details (API keys, model selection) will be configured via environment variables
+- **Ollama** will be used as the local LLM provider (self-hosted, no API keys required for basic setup)
+- Model selection will be configured via environment variables (e.g., `OLLAMA_MODEL=llama3`)
 - Initial implementation will use browser local storage for persistence (no backend database required for MVP)
 - The application will be a single-page web application
 - Users interact one at a time (no real-time collaboration between users on shared threads)
+- **No authentication required** - single-user local application; all threads belong to the local user
+- **MVP uses simple conversational Q&A** (LLM responds based on conversation context only); graph architecture should support adding tool-calling capabilities in a future iteration
+
+## Clarifications
+
+### Session 2026-01-21
+
+- Q: What AI capabilities should the assistant have? → A: Simple Q&A for MVP, architecture supports future tool-calling
+- Q: How should storage limits be handled? → A: Keep last 50 threads, auto-delete oldest when limit reached
+- Q: Which LLM provider/model to use? → A: Ollama (local/self-hosted)
+- Q: How are thread titles generated? → A: Auto-generate from first user message (truncated to 30 chars)
+- Q: Is authentication required? → A: No authentication (single-user local app)
+- Q: Should AI responses support markdown? → A: Full markdown (code blocks with syntax highlighting, lists, bold, links)
+- Q: How much conversation history sent to Ollama? → A: Last 10 messages
+- Q: Specific error for Ollama not running? → A: Yes, with setup instructions
