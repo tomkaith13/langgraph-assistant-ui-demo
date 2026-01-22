@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { HumanMessage } from '@langchain/core/messages';
+import { HumanMessage, AIMessage } from '@langchain/core/messages';
 import { streamingChatNode } from '@/lib/graph/nodes/chatNode';
 import { GraphStateAnnotation } from '@/types/graph';
 import { checkOllamaHealth } from '@/lib/ollama/healthCheck';
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
           const langchainMessages = body.messages.map((msg) =>
             msg.role === 'user'
               ? new HumanMessage(msg.content)
-              : new HumanMessage(msg.content)
+              : new AIMessage(msg.content)
           );
 
           const state: typeof GraphStateAnnotation.State = {
