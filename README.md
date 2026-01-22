@@ -50,13 +50,26 @@ A modern, threaded chat application powered by LangGraph and Ollama, featuring r
 4. **Open Application**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Environment Variables
+## Environment Setup
+
+Create a `.env.local` file in the project root with the following configuration:
 
 ```bash
-OLLAMA_BASE_URL=http://localhost:11434  # Ollama server URL
-OLLAMA_MODEL=gpt-oss:20b                # Model name
-OLLAMA_TEMPERATURE=0.7                   # Response creativity (0-1)
+# Ollama Configuration
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=gpt-oss:20b
+OLLAMA_TEMPERATURE=0.7
 ```
+
+### Environment Variables Reference
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `OLLAMA_BASE_URL` | Base URL for Ollama server | `http://localhost:11434` | `http://localhost:11434` |
+| `OLLAMA_MODEL` | LLM model to use | `gpt-oss:20b` | `llama2`, `neural-chat`, `mistral` |
+| `OLLAMA_TEMPERATURE` | Controls response creativity (0=deterministic, 1=random) | `0.7` | `0.5` to `0.9` |
+
+**Note**: The `.env.local` file is gitignored and should never be committed. Each developer should maintain their own copy with their local settings.
 
 ## Available Scripts
 
