@@ -12,6 +12,10 @@ A modern, threaded chat application powered by LangGraph and Ollama, featuring r
 - ♿ **Accessible**: WCAG 2.1 AA compliant with keyboard navigation
 - 🔒 **Type-safe**: TypeScript strict mode throughout
 
+## Screenshot
+
+![LangGraph Chat Interface](screenshots/chat.png)
+
 ## Prerequisites
 
 - Node.js 18+ 
