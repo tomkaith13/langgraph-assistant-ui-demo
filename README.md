@@ -21,8 +21,8 @@ A modern, threaded chat application powered by LangGraph and Ollama, featuring r
   # Start Ollama server
   ollama serve
   
-  # Pull a model (e.g., llama3)
-  ollama pull llama3
+  # Pull a model (e.g., gpt-oss:20b)
+  ollama pull gpt-oss:20b
   ```
 
 ## Quick Start
@@ -54,7 +54,7 @@ A modern, threaded chat application powered by LangGraph and Ollama, featuring r
 
 ```bash
 OLLAMA_BASE_URL=http://localhost:11434  # Ollama server URL
-OLLAMA_MODEL=llama3                      # Model name
+OLLAMA_MODEL=gpt-oss:20b                # Model name
 OLLAMA_TEMPERATURE=0.7                   # Response creativity (0-1)
 ```
 

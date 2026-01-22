@@ -125,7 +125,7 @@ As a user, I want my conversation threads to persist across browser sessions so 
 - LangGraph will be used for the AI/agent orchestration backend
 - assistant-ui library will provide the chat UI primitives
 - **Ollama** will be used as the local LLM provider (self-hosted, no API keys required for basic setup)
-- Model selection will be configured via environment variables (e.g., `OLLAMA_MODEL=llama3`)
+- Model selection will be configured via environment variables (e.g., `OLLAMA_MODEL=gpt-oss:20b`)
 - Initial implementation will use browser local storage for persistence (no backend database required for MVP)
 - The application will be a single-page web application
 - Users interact one at a time (no real-time collaboration between users on shared threads)

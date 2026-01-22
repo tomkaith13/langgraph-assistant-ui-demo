@@ -8,7 +8,7 @@ export const handlers = [
     return HttpResponse.json({
       models: [
         {
-          name: 'llama3:latest',
+          name: 'gpt-oss:20b',
           modified_at: '2024-01-01T00:00:00Z',
           size: 4661224676,
         },
@@ -61,7 +61,7 @@ export const handlers = [
       status: 'ok',
       ollama: {
         available: true,
-        model: 'llama3',
+        model: 'gpt-oss:20b',
         baseUrl: OLLAMA_BASE_URL,
       },
     });

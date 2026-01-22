@@ -38,7 +38,7 @@ interface HealthResponse {
   "status": "ok",
   "ollama": {
     "available": true,
-    "model": "llama3",
+    "model": "gpt-oss:20b",
     "baseUrl": "http://localhost:11434"
   }
 }

@@ -24,7 +24,7 @@ brew install ollama
 ollama serve
 
 # In a new terminal, pull a model
-ollama pull llama3
+ollama pull gpt-oss:20b
 ```
 
 Verify Ollama is running:
@@ -55,7 +55,7 @@ Create `.env.local` in the project root:
 ```bash
 # Ollama Configuration
 OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_MODEL=llama3
+OLLAMA_MODEL=gpt-oss:20b
 
 # Optional: Change temperature (0.0-1.0)
 OLLAMA_TEMPERATURE=0.7
@@ -133,12 +133,12 @@ ollama serve
 ollama list
 
 # Pull the model specified in .env.local
-ollama pull llama3
+ollama pull gpt-oss:20b
 ```
 
 ### Slow Responses
 
-- Try a smaller model: `ollama pull llama3.2:1b`
+- Try a different model: `ollama pull mistral` or `ollama pull neural-chat`
 - Update `OLLAMA_MODEL` in `.env.local`
 - Check CPU/GPU utilization
 
