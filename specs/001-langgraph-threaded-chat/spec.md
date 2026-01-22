@@ -74,7 +74,7 @@ As a user, I want my conversation threads to persist across browser sessions so 
 
 - What happens when the user sends an empty message? (System should prevent sending or show validation)
 - What happens when the AI service is unavailable? (User sees a friendly error message with retry option)
-- What happens when the user sends a very long message? (System handles gracefully with appropriate limits)
+- What happens when the user sends a very long message? (System limits input to 4000 characters with character counter; prevents submission beyond limit)
 - What happens when network connectivity is lost mid-response? (Partial response is preserved, error shown, retry available)
 - What happens when a user tries to delete a thread? (Confirmation dialog, then permanent removal)
 - What happens when the user rapidly sends multiple messages? (Messages queue and process in order)
@@ -95,7 +95,7 @@ As a user, I want my conversation threads to persist across browser sessions so 
 - **FR-010**: System MUST persist threads and messages to local storage for session continuity
 - **FR-011**: System MUST limit storage to 50 threads maximum, auto-deleting oldest threads when limit is reached
 - **FR-012**: System MUST handle errors gracefully with user-friendly messages
-- **FR-013**: System MUST be keyboard accessible (Enter to send, Tab navigation)
+- **FR-013**: System MUST be keyboard accessible (Enter to send, Tab navigation through input → send button → thread list in logical order)
 - **FR-014**: System MUST display timestamps for messages
 - **FR-015**: System MUST render AI responses as markdown with full support (code blocks with syntax highlighting, lists, bold, italic, links)
 - **FR-016**: System MUST send only the last 10 messages as context to Ollama (not full thread history)
@@ -103,7 +103,7 @@ As a user, I want my conversation threads to persist across browser sessions so 
 
 ### Key Entities
 
-- **Thread**: A container for a conversation; has a unique identifier, title (auto-generated from first user message, truncated to 30 characters, user can rename), creation timestamp, last activity timestamp, and contains an ordered list of messages
+- **Thread**: A container for a conversation; has a unique identifier, title (auto-generated from first user message, truncated to 30 characters), creation timestamp, last activity timestamp, and contains an ordered list of messages
 - **Message**: A single chat message; has a unique identifier, content (text), role (user or assistant), timestamp, and belongs to exactly one thread
 - **Graph State**: The LangGraph execution state; tracks the current conversation context, accumulated messages, and any intermediate processing state needed for multi-turn conversations
 
