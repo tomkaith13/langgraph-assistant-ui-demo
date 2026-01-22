@@ -2,7 +2,7 @@
 
 import { useOllamaStatus } from '@/hooks/useOllamaStatus';
 import { useThread } from '@/hooks/useThread';
-import ChatInterface from '@/components/chat/ChatInterface';
+import ChatInterfaceWrapper from '@/components/chat/ChatInterfaceWrapper';
 import ThreadList from '@/components/threads/ThreadList';
 import OllamaError from '@/components/errors/OllamaError';
 
@@ -50,7 +50,7 @@ export default function Home() {
         onDeleteThread={removeThread}
       />
       <div className="flex-1">
-        <ChatInterface
+        <ChatInterfaceWrapper
           threadId={activeThreadId}
           threadTitle={activeThread?.title}
         />
