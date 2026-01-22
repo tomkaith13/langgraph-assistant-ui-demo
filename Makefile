@@ -10,10 +10,10 @@ start:
 	npm run start
 
 test:
-	npm run test
+	npm run test -- --run
 
 test\:e2e:
-	npm run test:e2e
+	npm run test:e2e -- --headed=false
 
 lint:
 	npm run lint
