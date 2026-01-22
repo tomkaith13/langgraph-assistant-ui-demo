@@ -17,7 +17,23 @@ export const handlers = [
   }),
 
   // Chat API endpoint
-  http.post('/api/chat', async () => {
+  http.post('/api/chat', async ({ request }) => {
+    // Parse and validate request body
+    const body = await request.json() as any;
+    
+    if (!body.threadId || !body.messages || !Array.isArray(body.messages)) {
+      return HttpResponse.json(
+        {
+          type: 'error',
+          error: {
+            code: 'INVALID_REQUEST',
+            message: 'Invalid request body',
+          },
+        },
+        { status: 400 }
+      );
+    }
+
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       start(controller) {
